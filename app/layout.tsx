@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import { ConvexProvider } from "@/providers/ConvexProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,15 +33,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="systen"
-          enableSystem
-          disableTransitionOnChange
-          storageKey="notion-theme"
-        >
-          {children}
-        </ThemeProvider>
+        <ConvexProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="systen"
+            enableSystem
+            disableTransitionOnChange
+            storageKey="notion-theme"
+          >
+            {children}
+          </ThemeProvider>
+        </ConvexProvider>
       </body>
     </html>
   );
