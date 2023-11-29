@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { ConvexProvider } from "@/providers/ConvexProvider";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -42,6 +43,7 @@ export default function RootLayout({
             storageKey="notion-theme"
           >
             {children}
+            <Toaster position="bottom-center" />
           </ThemeProvider>
         </ConvexProvider>
       </body>
