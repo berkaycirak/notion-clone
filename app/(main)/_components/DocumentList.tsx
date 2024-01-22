@@ -1,16 +1,16 @@
-import { api } from "@/convex/_generated/api";
-import { Doc, Id } from "@/convex/_generated/dataModel";
-import { useQuery } from "convex/react";
-import { useParams, useRouter } from "next/navigation";
-import React, { useState } from "react";
-import Item from "./Item";
-import { cn } from "@/lib/utils";
-import { FileIcon } from "lucide-react";
+import { api } from '@/convex/_generated/api';
+import { Doc, Id } from '@/convex/_generated/dataModel';
+import { useQuery } from 'convex/react';
+import { useParams, useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import Item from './Item';
+import { cn } from '@/lib/utils';
+import { FileIcon } from 'lucide-react';
 
 interface DocumentListProps {
-  parentDocumentId: Id<"documents">;
+  parentDocumentId: Id<'documents'>;
   level: number;
-  data: Doc<"documents">[];
+  data: Doc<'documents'>[];
 }
 
 const DocumentList = ({
@@ -59,9 +59,9 @@ const DocumentList = ({
           paddingLeft: level ? `${level * 12 + 25}px` : undefined,
         }}
         className={cn(
-          "hidden text-sm font-medium text-muted-foreground/80",
-          expanded && "last:block",
-          level === 0 && "hidden"
+          'hidden text-sm font-medium text-muted-foreground/80',
+          expanded && 'last:block',
+          level === 0 && 'hidden'
         )}
       >
         No pages inside
