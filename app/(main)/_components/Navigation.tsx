@@ -1,5 +1,6 @@
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { cn } from '@/lib/utils';
+import Navbar from './Navbar';
 import {
   ChevronsLeft,
   MenuIcon,
@@ -21,9 +22,11 @@ import {
   PopoverContent,
 } from '@/components/ui/popover';
 import { TrashBox } from './TrashBox';
+import { useParams } from 'next/navigation';
 
 const Navigation = () => {
   const width = useMediaQuery();
+  const params = useParams();
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<'aside'>>(null);
   const navbarRef = useRef<ElementRef<'div'>>(null);
@@ -161,14 +164,18 @@ const Navigation = () => {
           width < 768 && 'left-0 w-full'
         )}
       >
-        <nav className='bg-transparent px-3 py-2 w-full'>
-          {isCollapsed && (
-            <MenuIcon
-              onClick={resetWidth}
-              className='h-6 w-6 text-muted-foreground'
-            />
-          )}
-        </nav>
+        {params.documentId ? (
+          <Navbar isCollapsed={isCollapsed} onResetWidth={resetWidth} />
+        ) : (
+          <nav className='bg-transparent px-3 py-2 w-full'>
+            {isCollapsed && (
+              <MenuIcon
+                onClick={resetWidth}
+                className='h-6 w-6 text-muted-foreground'
+              />
+            )}
+          </nav>
+        )}
       </div>
     </>
   );
